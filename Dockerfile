@@ -10,6 +10,8 @@ RUN echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/
 RUN apt-get update -o Dir::Etc::sourcelist="sources.list.d/jenkins.sources.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
 RUN apt-get install -yq --force-yes jenkins
 
+RUN apt-get install -yq curl
+
 VOLUME ["/var/lib/docker", "/var/lib/jenkins"]
 ENV JENKINS_HOME /var/lib/jenkins
 EXPOSE 443
