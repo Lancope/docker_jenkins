@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
+if [ ! -z "$HTTP_PROXY" ] ; then
+  echo export http_proxy="$HTTP_PROXY" >> /etc/default/docker
+fi
+
 service docker start
 java -jar /usr/share/jenkins/jenkins.war
