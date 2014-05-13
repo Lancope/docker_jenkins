@@ -12,7 +12,7 @@ RUN apt-get install -yq --force-yes jenkins
 
 VOLUME ["/var/lib/docker", "/var/lib/jenkins"]
 ENV JENKINS_HOME /var/lib/jenkins
-EXPOSE 8080
+EXPOSE 443
 
 ADD run /usr/local/bin/run
 RUN chmod a+x /usr/local/bin/run

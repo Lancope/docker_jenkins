@@ -2,6 +2,13 @@
 if [ ! -z "$HTTP_PROXY" ] ; then
   echo export http_proxy="$HTTP_PROXY" >> /etc/default/docker
 fi
+if [ ! -f /var/lib/jenkins/secrets/https.jks ] ; then
+  keytool -genkey -keyalg RSA -keysize 2048 -keystore /var/lib/jenkins/secrets/https.jks -validity 3650 \
+  -storepass changeme -keypass changeme \
+  -alias jenkins -dname "CN=jenkins.local, O=Corp, L=City, S=State, C=US"
+  chmod go-r /var/lib/jenkins/secrets/https.jks
+fi
 
 service docker start
-java -jar /usr/share/jenkins/jenkins.war
+java -jar /usr/share/jenkins/jenkins.war --httpPort=-1 --httpsPort=443 \
+--httpsKeyStore=/var/lib/jenkins/secrets/https.jks --httpsKeyStorePassword=changeme
