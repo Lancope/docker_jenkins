@@ -1,4 +1,4 @@
-FROM lancope/java:trusty_8
+FROM lancope/java:8
 
 ENV LAST_APT_DOCKER_FETCH 20141029
 
@@ -9,7 +9,7 @@ RUN apt-get install -yq lxc-docker
 
 ENV LAST_APT_JENKINS_FETCH 20141029
 
-RUN wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+RUN wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
 RUN echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.sources.list
 RUN apt-get update -o Dir::Etc::sourcelist="sources.list.d/jenkins.sources.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
 RUN apt-get install -yq --force-yes jenkins
