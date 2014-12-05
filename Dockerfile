@@ -16,6 +16,8 @@ RUN apt-get install -yq --force-yes jenkins
 
 RUN apt-get install -yq curl
 
+RUN curl -sL https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
+
 VOLUME ["/var/lib/docker", "/var/lib/jenkins"]
 ENV JENKINS_HOME /var/lib/jenkins
 EXPOSE 443
