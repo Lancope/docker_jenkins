@@ -6,6 +6,7 @@ if [ ! -z "$NO_PROXY" ] ; then
   echo export NO_PROXY="$NO_PROXY" >> /etc/default/docker
 fi
 if [ ! -f /var/lib/jenkins/secrets/https.jks ] ; then
+  mkdir -p /var/lib/jenkins/secrets
   keytool -genkey -keyalg RSA -keysize 2048 -keystore /var/lib/jenkins/secrets/https.jks -validity 3650 \
   -storepass changeme -keypass changeme \
   -alias jenkins -dname "CN=jenkins.local, O=Corp, L=City, S=State, C=US"
