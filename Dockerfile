@@ -15,6 +15,7 @@ RUN apt-get update -o Dir::Etc::sourcelist="sources.list.d/jenkins.sources.list"
 RUN apt-get install -yq --force-yes jenkins
 
 RUN curl -sL https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
+RUN curl -L https://github.com/docker/fig/releases/download/1.1.0-rc1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose; chmod +x /usr/local/bin/docker-compose
 
 RUN apt-get clean
 
