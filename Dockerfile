@@ -1,4 +1,4 @@
-FROM java:7-jre
+FROM java:7-jdk
 
 ENV LAST_APT_DOCKER_FETCH 20141229
 
